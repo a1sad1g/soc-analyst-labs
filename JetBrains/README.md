@@ -20,4 +20,22 @@ The investigation focuses on analyzing network traffic to identify how a web ser
 
 **2- Course:** Network Forensics.
 
+## Objective
+The purpose of the current experiment is to conduct a thorough analysis of the collected network data traffic and recreate the entire attack cycle conducted by the adversary on the compromised web server.
+With the help of applications like Wireshark, NetworkMiner, and Brim, the primary aim was to:
+
+**1- Ascertain the source IP address of the attacker.**
+
+**2- Establish the vulnerable service and corresponding CVE.**
+
+**3- Monitor the activities of the adversary post-compromise.**
+
+**4- Find out about any persistence techniques such as web shells and backdoors.**
+
+**5- Examine attacker commands and post-compromise actions.**
+
+**6- Relate observed behaviors to the MITRE ATT&CK framework.**
+
+
+
 
