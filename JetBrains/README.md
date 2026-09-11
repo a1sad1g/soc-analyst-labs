@@ -1,11 +1,18 @@
 ## CyberDefenders — JetBrains
+## ⚠️ Disclaimer ⚠️
+This write-up is for educational purposes only. It is meant to explain the thought process and steps taken to solve the challenge.
+
+Please do not simply copy and paste the answers, as this may slow down your technical growth and prevent you from building real problem-solving skills.
+
+Always try the challenge on your own first. Use this write-up only as a guide to understand the approach, not as a shortcut.
+Real skills are built through practice, trial and error, and persistence.
+
+## CyberDefender Lab Write-ups
+[CyberDefender](https://cyberdefenders.org/blueteam-ctf-challenges/jetbrains)
 ## Overview
 
 This write-up documents my investigation of the JetBrains lab on CyberDefenders.
 
 The investigation focuses on analyzing network traffic to identify how a web server was compromised and what actions the attacker performed after gaining access.
 
-## Scenario
-During a recent security incident, an attacker successfully exploited a vulnerability in our web server, allowing them to upload webshells and gain full control over the system. The attacker utilized the compromised web server as a launch point for further malicious activities, including data manipulation. 
 
-As part of the investigation, You are provided with a packet capture (PCAP) of the network traffic during the attack to piece together the attack timeline and identify the methods used by the attacker. The goal is to determine the initial entry point, the attacker's tools and techniques, and the compromise's extent.
