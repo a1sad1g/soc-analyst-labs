@@ -36,6 +36,36 @@ With the help of applications like Wireshark, NetworkMiner, and Brim, the primar
 
 **6- Relate observed behaviors to the MITRE ATT&CK framework.**
 
+## Network Forensics Investigation Summary
+
++--------------------------+----------------------------------------------+
+| Forensics Category       | Details                                      |
++--------------------------+----------------------------------------------+
+| Network Forensics        | Malicious HTTP traffic detected              |
++--------------------------+----------------------------------------------+
+| Initial Access           | Exploitation of vulnerable web application   |
++--------------------------+----------------------------------------------+
+| Exploit Used             | CVE-2024-3400                                |
++--------------------------+----------------------------------------------+
+| Threat Actor IP          | 23.158.56.196                                |
++--------------------------+----------------------------------------------+
+| Persistence              | Web Shell Upload                             |
++--------------------------+----------------------------------------------+
+| Execution                | Remote command execution via web shell       |
++--------------------------+----------------------------------------------+
+| Credential Access        | Admin credential tampering                   |
++--------------------------+----------------------------------------------+
+| Defense Evasion          | Attempted container escape                   |
++--------------------------+----------------------------------------------+
+| MITRE ATT&CK Technique   | T1565.001 – Stored Data Manipulation         |
++--------------------------+----------------------------------------------+
+| IOC Source               | PCAP / Network Traffic Analysis              |
++--------------------------+----------------------------------------------+
+| Investigation Tools      | Wireshark                                    |
++--------------------------+----------------------------------------------+
+| Threat Severity          | Medium                                       |
++--------------------------+----------------------------------------------+
+
 
 
 
