@@ -1,5 +1,5 @@
-## CyberDefenders — JetBrains
-## Overview
+##CyberDefenders — JetBrains
+##Overview
 
 This write-up documents my investigation of the JetBrains lab on CyberDefenders.
 
