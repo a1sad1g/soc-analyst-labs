@@ -69,3 +69,13 @@ Using the Rapid7 website, I identified the CVE associated with the exploited vul
 ![CVE](screenshot/Screenshot%20From%202026-09-12%2001-34-56.png)
 
 CVE-2024-27198 is a critical authentication bypass vulnerability in JetBrains TeamCity that can allow an unauthenticated attacker to access protected functionality.
+
+## Q4: What credentials did the attacker successfully use for Basic Auth against the TeamCity server? 
+
+After enter the filter `http.request.method == POST` and collect the POST request contain `/hax?jsp=/app/rest/users;.jsp`. I then followed the HTTP conversation by selecting Follow → HTTP Stream.
+
+![username:password](screenshot/Screenshot%20From%202026-09-12%2001-37-59.png)
+
+While analyzing the HTTP stream, I found a username and password exposed in the request. This shows that authentication credentials were exposed in the captured HTTP traffic.
+
+
