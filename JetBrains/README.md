@@ -103,4 +103,10 @@ The packet timestamp shows that the attacker executed their first command throug
 ## Q7: The attacker tampered with a text file that contained the credentials of the admin user of the webserver. What new username and password did the attacker write in the file?
 
 
+I continued analyzing the commands executed through the webshell using the following filter: `ip.src == 23.158.56.196 && http.request.method == POST && http.request.uri contains "NSt8bHTg.jsp"` 
+I then inspected the requests containing the cmd parameter and found a command that overwrote /tmp/Creds.txt: `bash -c 'echo "username:a1l4m,password:youarecompromised" > /tmp/Creds.txt'`
+
+![bash](screenshot/Screenshot%20From%202026-09-12%2002-10-15.png)
+
+
 
