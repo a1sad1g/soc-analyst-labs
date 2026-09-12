@@ -60,6 +60,12 @@ The filter returned several HTTP requests. One request was particularly interest
 
 In the response body we can see the server version
 
+## Q3: After identifying the version of our web server service, what CVE number corresponds to the vulnerability the attacker exploited?
 
+After identifying the web server as JetBrains TeamCity version `2023.11.3`, I searched for known vulnerabilities affecting this version.
 
+Using the Rapid7 website, I identified the CVE associated with the exploited vulnerability:
 
+![CVE](screenshot/Screenshot%20From%202026-09-12%2001-34-56.png)
+
+CVE-2024-27198 is a critical authentication bypass vulnerability in JetBrains TeamCity that can allow an unauthenticated attacker to access protected functionality.
