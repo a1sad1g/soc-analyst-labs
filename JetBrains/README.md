@@ -108,5 +108,28 @@ I then inspected the requests containing the cmd parameter and found a command t
 
 ![bash](screenshot/Screenshot%20From%202026-09-12%2002-10-15.png)
 
+## Q8: showed the attacker writing false credentials into Creds.txt. Which MITRE ATT&CK sub-technique (Data Manipulation family) describes that specific file-write action?
+
+The attacker modified the contents of `Creds.txt` and replaced the legitimate credentials with false credentials.
+
+This activity maps to:
+
+**MITRE ATT&CK:** `T1565.001 - Stored Data Manipulation`
+
+The attacker manipulated stored data within a file, compromising the integrity of the file's contents.
+
+## Q9: Immediately after gaining a shell, the attacker executed a docker command that mounted the host filesystem and chrooted into it — providing full host access. What was that exact command?
+
+While analyzing the commands executed through the webshell, I identified several Docker commands.
+
+The attacker attempted to escape the container by mounting the host filesystem and using `chroot`:
+
+`docker run --rm -it -v /:/host ubuntu chroot /host`
+
+![docker](screenshot/Screenshot%20From%202026-09-12%2002-13-50.png)
+
+The -v /:/host option attempts to mount the host's root filesystem at /host, while chroot /host attempts to change the root directory to the mounted host filesystem.
+
+
 
 
