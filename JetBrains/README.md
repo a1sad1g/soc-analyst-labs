@@ -50,6 +50,16 @@ The request was sent to the compromised web server at `172.31.25.119`.
 
 The packet shows `23.158.56.196` as the source IP and `172.31.25.119` as the destination. The HTTP POST request targets `/admin/pluginUpload.html`, indicating file-upload activity.
 
+## Q2: To identify potential vulnerability exploitation, what version of our web server service is running?
+
+We now know the IP-address of the attacker, so this will allow for some more specific searching. Let’s filter for all HTTP requests from this IP-address:
+`ip.src == 23.158.56.196 && http`
+In we can see there are request from this filter and the interested one was `GET /hax?jsp=/app/rest/server;.jsp` this could gave us more about the server version so by Right click into the packet and follow the http stream:
+
+![Server version](screenshot/Screenshot%20From%202026-09-12%2001-32-52.png)
+
+In the response body we can see the server version
+
 
 
 
