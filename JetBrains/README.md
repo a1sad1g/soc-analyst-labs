@@ -133,5 +133,5 @@ The -v /:/host option attempts to mount the host's root filesystem at /host, whi
 
 ![badge](screenshot/Screenshot%20From%202026-09-12%2002-27-05.png)
 
-**I hope this write-up was helpful to you, Until the next one stay save.
+**I hope this write-up was helpful to you, Until the next one stay save.**
 
