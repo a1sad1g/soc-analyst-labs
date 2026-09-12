@@ -36,6 +36,8 @@ With the help of applications like Wireshark, NetworkMiner, and Brim, the primar
 
 **6- Relate observed behaviors to the MITRE ATT&CK framework.**
 
+## Q1: Identifying the attacker's IP address helps trace the source and stop further attacks. What is the attacker's IP address?
+
 
 
 
