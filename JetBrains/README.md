@@ -131,5 +131,7 @@ The attacker attempted to escape the container by mounting the host filesystem a
 The -v /:/host option attempts to mount the host's root filesystem at /host, while chroot /host attempts to change the root directory to the mounted host filesystem.
 
 
+![badge](screenshot/Screenshot%20From%202026-09-12%2002-27-05.png)
 
+**I hope this write-up was helpful to you, Until the next one stay save.
 
