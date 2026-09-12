@@ -54,7 +54,7 @@ The packet shows `23.158.56.196` as the source IP and `172.31.25.119` as the des
 
 We now know the IP-address of the attacker, so this will allow for some more specific searching. Let’s filter for all HTTP requests from this IP-address:
 `ip.src == 23.158.56.196 && http`
-In we can see there are request from this filter and the interested one was `GET /hax?jsp=/app/rest/server;.jsp` this could gave us more about the server version so by Right click into the packet and follow the http stream:
+The filter returned several HTTP requests. One request was particularly interesting `GET /hax?jsp=/app/rest/server;.jsp` This request could reveal additional information about the server, including its version. I right-clicked the packet and selected Follow → HTTP Stream to inspect the complete HTTP conversation.
 
 ![Server version](screenshot/Screenshot%20From%202026-09-12%2001-32-52.png)
 
