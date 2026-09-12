@@ -46,7 +46,7 @@ The suspicious HTTP POST request used to upload a file originated from:
 
 The request was sent to the compromised web server at `172.31.25.119`.
 
-![Attacker IP - HTTP POST](screenshots/01-attacker-ip.png)
+![Attacker IP - HTTP POST](screenshot/ScreenshotFrom2026-1201-32-04.png)
 
 The packet shows `23.158.56.196` as the source IP and `172.31.25.119` as the destination. The HTTP POST request targets `/admin/pluginUpload.html`, indicating file-upload activity.
 
