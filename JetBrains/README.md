@@ -92,3 +92,15 @@ By analyzing the HTTP stream, I identified the filename of the file uploaded by 
 
 ## Q6: When did the attacker execute their first command via the web shell?
 
+After identifying the uploaded webshell, I filtered the traffic for POST requests and searched for requests to the uploaded `.jsp` file.
+
+The first request to the webshell was: `POST /plugins/NSt8bHTg/NSt8bHTg.jsp` I then inspected the request contents and found the following command: `cmd=ls`
+
+![timestamp](screenshot/Screenshot%20From%202026-09-12%2002-00-56.png)
+
+The packet timestamp shows that the attacker executed their first command through the webshell at: `2024-06-30 08:03:57.620161`
+
+## Q7: The attacker tampered with a text file that contained the credentials of the admin user of the webserver. What new username and password did the attacker write in the file?
+
+
+
