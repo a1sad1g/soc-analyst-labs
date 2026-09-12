@@ -78,4 +78,17 @@ After enter the filter `http.request.method == POST` and collect the POST reques
 
 While analyzing the HTTP stream, I found a username and password exposed in the request. This shows that authentication credentials were exposed in the captured HTTP traffic.
 
+## Q5: The attacker uploaded a webshell to ensure his access to the system. What is the name of the file that the attacker uploaded?
+
+Now that we have identified the exposed credentials, the next step was to identify the webshell uploaded by the attacker.
+
+I used the same filter `http.request.method == POST`, I then analyzed the POST requests and identified the following endpoint: `/admin/pluginUpload.html`, This endpoint was particularly suspicious because it was used to upload a file to the TeamCity server.
+I right-clicked the request and selected Follow → HTTP Stream to inspect the complete HTTP conversation.
+
+![name_of_file](screenshot/Screenshot%20From%202026-09-12%2001-48-34.png)
+
+
+By analyzing the HTTP stream, I identified the filename of the file uploaded by the attacker.
+
+## Q6: When did the attacker execute their first command via the web shell?
 
