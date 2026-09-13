@@ -126,7 +126,7 @@ The attacker attempted to escape the container by mounting the host filesystem a
 
 `docker run --rm -it -v /:/host ubuntu chroot /host`
 
-![docker](screenshot/Screenshot%20From%202026-09-12%2002-13-50.png)
+![docker](screenshot/Screenshot%20From%202026-09-13%2014-03-42.png)
 
 The -v /:/host option attempts to mount the host's root filesystem at /host, while chroot /host attempts to change the root directory to the mounted host filesystem.
 
