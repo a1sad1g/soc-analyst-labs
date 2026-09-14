@@ -67,10 +67,15 @@ The first request occurred before the XSS payload was injected. The second reque
 
 ## Q5: The theft of a session token through XSS is a serious security breach that allows unauthorized access. Can you provide the session token that the attacker acquired and used for this unauthorized access?
 
-To identify the stolen session token, I examined the HTTP requests associated with the administrator's session. I focused on requests to the admin dashboard and inspected the HTTP headers, particularly the `Cookie` field.
+After identifying the administrator's first visit to the page containing the XSS payload in Q4, I followed the corresponding HTTP stream and inspected the request headers.
 
-The administrator's session cookie was then correlated with the subsequent requests made by the attacker to determine which session token was stolen and used for unauthorized access.
+The administrator's session cookie was present in the `Cookie` header:
+`Cookie: PHESESSID=lqkctf24s9h9lg67teu8uevn3q`
 
 ![Session](screenshot/Session_token.png)
+
+This session token was subsequently acquired by the attacker through the XSS attack and used to hijack the administrator's session.
+
+## Q6: Identifying which scripts have been exploited is crucial for mitigating vulnerabilities in a web application. What is the name of the script that was exploited by the attacker?
 
 
