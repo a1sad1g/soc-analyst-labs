@@ -33,3 +33,16 @@ I started by analyzing the HTTP traffic in Wireshark using the following filter:
 ![ip_attacker](screenshot/IP_attacker.png)
 
 The high frequency and changing URI paths suggested automated web enumeration or path discovery rather than normal user activity.
+
+## Q2: The attacker used a directory brute-forcing tool to discover hidden paths. Which tool did the attacker use to perform the brute-forcing?
+
+To identify the tool used by the attacker, I inspected the HTTP streams and examined the HTTP request headers, particularly the `User-Agent` field.
+
+The following User-Agent was identified: `User-Agent: gobuster/3.6`
+
+![Tool](screenshot/The_tool_that_user.png)
+
+This indicates that the attacker used Gobuster version 3.6 to perform directory brute-forcing and discover hidden paths on the server.
+
+## Q3: Cross-Site Scripting (XSS) allows attackers to inject malicious scripts into web pages viewed by users. Can you specify the XSS payload that the attacker used to compromise the integrity of the web application?
+
