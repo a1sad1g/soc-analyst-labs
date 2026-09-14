@@ -85,9 +85,9 @@ After reviewing the resulting requests, I identified the script: `log_viewer.php
 
 ## Q7: Exploiting vulnerabilities to access sensitive system files is a common tactic used by attackers. Can you identify the specific payload the attacker used to access a sensitive system file?
 
-While analyzing the request associated with `log_viewers.php`, I inspected the value passed through the `file` parameter.
+While analyzing the request associated with `log_viewer.php`, I inspected the value passed through the `file` parameter.
 
-The parameter contained a path using directory traversal sequences (`../`), indicating that the attacker was attempting to navigate outside the application's intended directory and access a sensitive system file.
+The parameter contained a path using directory traversal sequences (`../../../../etc/passwd`), indicating that the attacker was attempting to navigate outside the application's intended directory and access a sensitive system file.
 
 This is a **Path Traversal** attack.
 
