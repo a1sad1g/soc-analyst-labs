@@ -22,5 +22,8 @@ This write-up documents my investigation of the RetailBreach lab on CyberDefende
 
 **2- Course:** Network Forensics.
 
-## Object
+## Objective
+
+The objective of this lab is to investigate suspicious network activity, identify the web application vulnerabilities exploited by the attacker, and trace their attack activity. This includes analyzing the XSS payload, extracting the administrator's session token, and determining how the attacker gained unauthorized access to restricted resources.
+
 
