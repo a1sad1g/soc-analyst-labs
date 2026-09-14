@@ -56,3 +56,11 @@ The payload was designed to steal the administrator's session cookie and send it
 
 ## Q4: Pinpointing the exact moment an admin user encounters the injected malicious script is crucial for understanding the timeline of a security breach. Can you provide the UTC timestamp when the admin user first visited the page containing the injected malicious script?
 
+After identifying the XSS payload injected into `reviews.php`, I analyzed subsequent HTTP requests to the same page while excluding the attacker's IP address. I used the following filter: `ip.src != 111.224.180.128 && http.request.uri contains "reviews.php"`
+This revealed two requests from the source IP 135.143.142.5:
+`2024-03-29 11:50:53.924069`
+`2024-03-29 12:09:50.869688`
+
+![Timestamp](screenshot/Timestamp.png)
+
+The first request occurred before the XSS payload was injected. The second request occurred after the injection and represents the admin's first visit to the page containing the malicious script.
