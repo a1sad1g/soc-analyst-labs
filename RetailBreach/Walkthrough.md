@@ -30,6 +30,6 @@ The objective of this lab is to investigate suspicious network activity, identif
 
 I started by analyzing the HTTP traffic in Wireshark using the following filter: `http.request.method == GET`, I noticed a large number of HTTP GET requests originating from the same IP address within a short period of time, The source IP `111.224.180.128` was repeatedly sending requests to the server 73.124.17.52, while continuously changing the requested paths.
 
-
+![ip_attacker](screenshot/IP_attacker.png)
 
 The high frequency and changing URI paths suggested automated web enumeration or path discovery rather than normal user activity.
