@@ -22,7 +22,7 @@ The investigation focuses on analyzing network traffic to identify how a web ser
 
 ## Objective
 The purpose of the current experiment is to conduct a thorough analysis of the collected network data traffic and recreate the entire attack cycle conducted by the adversary on the compromised web server.
-With the help of applications like Wireshark, NetworkMiner, and Brim, the primary aim was to:
+With the help of application like Wireshark the primary aim was to:
 
 **1- Ascertain the source IP address of the attacker.**
 
