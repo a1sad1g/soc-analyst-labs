@@ -26,4 +26,6 @@ This write-up documents my investigation of the RetailBreach lab on CyberDefende
 
 The objective of this lab is to investigate suspicious network activity, identify the web application vulnerabilities exploited by the attacker, and trace their attack activity. This includes analyzing the XSS payload, extracting the administrator's session token, and determining how the attacker gained unauthorized access to restricted resources.
 
+## Q1: Identifying an attacker's IP address is crucial for mapping the attack's extent and planning an effective response. What is the attacker's IP address?
+
 
