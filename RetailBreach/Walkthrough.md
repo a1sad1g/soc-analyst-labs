@@ -101,5 +101,6 @@ The server's response revealed sensitive system information, confirming that the
 
 ![badge](screenshot/Badge.png)
 
-**I hope this write-up was useful for you, Until now stay save.
+**I hope this write-up was helpful to you, Until the next one stay save.**
+
 
