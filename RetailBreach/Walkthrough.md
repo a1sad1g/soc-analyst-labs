@@ -22,6 +22,12 @@ This write-up documents my investigation of the RetailBreach lab on CyberDefende
 
 **2- Course:** Network Forensics.
 
+
+## Incident Scenario
+
+ShopSphere, an online retail platform, detected unusual administrative login activity outside normal working hours, accompanied by customer reports of account anomalies.
+
+The investigation focuses on analyzing the captured network traffic to identify the attacker, reconstruct the attack chain, and determine which vulnerabilities were exploited.
 ## Objective
 
 The objective of this lab is to investigate suspicious network activity, identify the web application vulnerabilities exploited by the attacker, and trace their attack activity. This includes analyzing the XSS payload, extracting the administrator's session token, and determining how the attacker gained unauthorized access to restricted resources.
