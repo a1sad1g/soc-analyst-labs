@@ -78,4 +78,22 @@ This session token was subsequently acquired by the attacker through the XSS att
 
 ## Q6: Identifying which scripts have been exploited is crucial for mitigating vulnerabilities in a web application. What is the name of the script that was exploited by the attacker?
 
+To identify the script exploited by the attacker, I filtered the HTTP POST requests and searched for requests containing file-related content: `http.request.method == POST && http contains "file"`
+After reviewing the resulting requests, I identified the script: `log_viewer.php`
+
+![Script](screenshot/file_name_and_the_path_into_it.png)
+
+## Q7: Exploiting vulnerabilities to access sensitive system files is a common tactic used by attackers. Can you identify the specific payload the attacker used to access a sensitive system file?
+
+While analyzing the request associated with `log_viewers.php`, I inspected the value passed through the `file` parameter.
+
+The parameter contained a path using directory traversal sequences (`../`), indicating that the attacker was attempting to navigate outside the application's intended directory and access a sensitive system file.
+
+This is a **Path Traversal** attack.
+
+![Script](screenshot/file_name_and_the_path_into_it.png)
+
+The server's response revealed sensitive system information, confirming that the traversal attempt was successful.
+
+![Content](screenshot/Content_of_the_secret_file.png)
 
