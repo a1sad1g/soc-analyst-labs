@@ -95,5 +95,11 @@ This is a **Path Traversal** attack.
 
 The server's response revealed sensitive system information, confirming that the traversal attempt was successful.
 
-![Content](screenshot/Content_of_the_secret_file.png)
+![Content](screenshot/Contant_of_the_secret_file.png)
+
+## Badge from cyberdefender
+
+![badge](screenshot/Badge.png)
+
+**I hope this write-up was useful for you, Until now stay save.
 
