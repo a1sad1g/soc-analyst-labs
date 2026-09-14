@@ -40,7 +40,7 @@ To identify the tool used by the attacker, I inspected the HTTP streams and exam
 
 The following User-Agent was identified: `User-Agent: gobuster/3.6`
 
-![Tool](screenshot/The_tool_that_user.png)
+![Tool](screenshot/The_tool_that_used.png)
 
 This indicates that the attacker used Gobuster version 3.6 to perform directory brute-forcing and discover hidden paths on the server.
 
