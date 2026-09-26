@@ -107,23 +107,27 @@ When we examining the `requestParameters.bucketName` we saw the name of the buck
 
 ![bucket](screenshot/bucket.png)
 
-### Question 5
+# Question 5
 
-**Creating a new user account is a common tactic attackers use to establish persistence in a compromised environment. What is the username of the account created by the attacker?**
+## Creating a new user account is a common tactic attackers use to establish persistence in a compromised environment. What is the username of the account created by the attacker?
 
-### Investigation
+## Investigation
 
 We search CloudTrail for IAM user-creation activity.
 
-```spl
- index="aws_cloudtrail" "userIdentity.userName"="helpdesk.luke" eventCategory="Management" | search eventName="CreateUser" OR eventName="CreateLoginProfile"| table _time, eventName, requestParameters.userName
-```
+![User](screenshot/Creat_User.png)
 
-### Question 6
+The requestParameters field contains information about the newly created IAM user.
 
-**Following account creation, the attacker added the account to a specific group. What is the name of the group to which the account was added?**
+We examine the userName value inside requestParameters to identify the account created by the attacker.
 
-### Investigation
+![User](screenshot/User_Name)
+
+# Question 6
+
+## Following account creation, the attacker added the account to a specific group. What is the name of the group to which the account was added?
+
+## Investigation
 
 We investigate IAM events following the `CreateUser` event.
 
