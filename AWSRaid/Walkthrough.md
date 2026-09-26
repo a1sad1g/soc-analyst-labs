@@ -140,3 +140,7 @@ account was added.
 
 In `requestParameters.groupName` we can see the name of the group was added to it
 
+# Badge
+![Badge](screenshot/Badge.png)
+
+## I hope this write-up was helpful to you, stay save
