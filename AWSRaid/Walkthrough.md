@@ -115,7 +115,7 @@ When we examining the `requestParameters.bucketName` we saw the name of the buck
 
 We search CloudTrail for IAM user-creation activity.
 
-![User](screenshot/Creat_User.png)
+![User](screenshot/Create_User.png)
 
 The requestParameters field contains information about the newly created IAM user.
 
