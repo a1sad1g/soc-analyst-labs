@@ -84,7 +84,7 @@ Following account creation, the attacker added the account to a specific group. 
 
 We investigate IAM events following the `CreateUser` event.
 
-![User_Group](screenshot/User_Group)
+![User_Group](screenshot/User_Group.png)
 
 The AddUserToGroup event contains the group to which the newly created
 account was added. 
