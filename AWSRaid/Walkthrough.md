@@ -28,7 +28,6 @@ This search groups the CloudTrail events by user identity, allowing us to identi
 
 The failed authentication events revealed helpdesk.luke as the username associated with the failed sign-in attempts. I then followed this account's subsequent CloudTrail activity to investigate what happened after the initial compromise.
 
-After identifying the available user accounts, we investigate their activity to determine which account was involved in the initial compromise.
 ```
 index=aws-cloudtrail sourcetype=aws:cloudtrail
 userIdentity.userName="helpdesk.luke"
@@ -61,7 +60,7 @@ We then identify the first event that represents access to an S3 object, such as
 
 ```
 index=aws-cloudtrail sourcetype=aws:cloudtrail
-userIdentity.userName="[COMPROMISED_USER]"
+userIdentity.userName="helpdesk.luke"
 eventSource="s3.amazonaws.com"
 eventName="GetObject"
 | sort 0 _time
