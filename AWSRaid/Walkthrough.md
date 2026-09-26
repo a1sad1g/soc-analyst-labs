@@ -121,7 +121,7 @@ The requestParameters field contains information about the newly created IAM use
 
 We examine the userName value inside requestParameters to identify the account created by the attacker.
 
-![User](screenshot/User_Name)
+![User](screenshot/User_Name.png)
 
 # Question 6
 
