@@ -38,4 +38,4 @@ We must investigate the events following the initial compromise to understand th
 
 After identifying the compromised account, we can focus on its S3 activity.
 
-![Timestamp][screenshot/Timestamp.png]
+![Timestamp](screenshot/Timestamp.png)
