@@ -38,4 +38,30 @@ We must investigate the events following the initial compromise to understand th
 
 After identifying the compromised account, we can focus on its S3 activity.
 
-![Timestamp](screenshot/Timestamp.png)
+```spl
+index="aws_cloudtrail" "userIdentity.userName"="helpdesk.luke" eventSource="s3.amazonaws.com" eventName="GetObject" | table _time, eventName, requestParameters.bucketName, requestParameters.key
+```
+
+### Question 3
+
+Among the S3 buckets accessed by the attacker, one contains a DWG file. What is the name of this bucket?
+
+### Investigation
+
+We investigate the S3 object requests made by the attacker and examine the requested object paths.
+
+```spl
+index="aws_cloudtrail" "userIdentity.userName"="helpdesk.luke" eventSource="s3.amazonaws.com" eventName="GetObject" "*.dwg" | table _time, requestParameters.bucketName, requestParameters.key
+```
+
+### Question 4
+
+We've identified changes to a bucket's configuration that allowed public access, a significant security concern. What is the name of this particular S3 bucket?
+
+### Investigation 
+
+We investigate S3 configuration changes and bucket access-control events.
+
+![Bucket](screenshot/Bucket.png)
+
+
