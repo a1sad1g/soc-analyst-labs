@@ -20,7 +20,7 @@ the affected AWS resources.
 
 ### Question 1
 
-Knowing which user account was compromised is essential for understanding the attacker's initial entry point into the environment. What is the username of the compromised user?
+**Knowing which user account was compromised is essential for understanding the attacker's initial entry point into the environment. What is the username of the compromised user?**
 
 ### Investigation
 
@@ -46,7 +46,7 @@ The compromised user account was: `helpdesk.luke`
 
 ### Question 2
 
-We must investigate the events following the initial compromise to understand the attacker's motives. What is the timestamp for the first access to an S3 object by the attacker?
+**We must investigate the events following the initial compromise to understand the attacker's motives. What is the timestamp for the first access to an S3 object by the attacker?**
 
 ### Investigation
 
@@ -58,7 +58,7 @@ index="aws_cloudtrail" "userIdentity.userName"="helpdesk.luke" eventSource="s3.a
 
 ### Question 3
 
-Among the S3 buckets accessed by the attacker, one contains a DWG file. What is the name of this bucket?
+**Among the S3 buckets accessed by the attacker, one contains a DWG file. What is the name of this bucket?**
 
 ### Investigation
 
@@ -70,7 +70,7 @@ index="aws_cloudtrail" "userIdentity.userName"="helpdesk.luke" eventSource="s3.a
 
 ### Question 4
 
-We've identified changes to a bucket's configuration that allowed public access, a significant security concern. What is the name of this particular S3 bucket?
+**We've identified changes to a bucket's configuration that allowed public access, a significant security concern. What is the name of this particular S3 bucket?**
 
 ### Investigation 
 
@@ -80,7 +80,7 @@ We investigate S3 configuration changes and bucket access-control events.
 
 ### Question 5
 
-Creating a new user account is a common tactic attackers use to establish persistence in a compromised environment. What is the username of the account created by the attacker?
+**Creating a new user account is a common tactic attackers use to establish persistence in a compromised environment. What is the username of the account created by the attacker?**
 
 ### Investigation
 
@@ -92,7 +92,7 @@ We search CloudTrail for IAM user-creation activity.
 
 ### Question 6
 
-Following account creation, the attacker added the account to a specific group. What is the name of the group to which the account was added?
+**Following account creation, the attacker added the account to a specific group. What is the name of the group to which the account was added?**
 
 ### Investigation
 
