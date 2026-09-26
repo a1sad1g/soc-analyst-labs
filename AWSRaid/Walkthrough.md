@@ -9,18 +9,13 @@
 
 ### Objective
 
-The objective of this investigation is to analyze AWS CloudTrail activity,
-identify the compromised account, trace the attacker's actions, and determine
-the affected AWS resources.
+The objective of this investigation is to analyze AWS CloudTrail activity, identify the compromised account, trace the attacker's actions, and determine the affected AWS resources.
 
 ---
 
-# Investigation
+# Question 1
 
-
-### Question 1
-
-**Knowing which user account was compromised is essential for understanding the attacker's initial entry point into the environment. What is the username of the compromised user?**
+## Knowing which user account was compromised is essential for understanding the attacker's initial entry point into the environment. What is the username of the compromised user?
 
 ### Investigation
 
@@ -42,11 +37,11 @@ By reviewing the user's activity chronologically, we can identify the suspicious
 
 **Result:** The compromised user account was: `helpdesk.luke`
 
-### Question 2
+# Question 2
 
-**We must investigate the events following the initial compromise to understand the attacker's motives. What is the timestamp for the first access to an S3 object by the attacker?**
+### We must investigate the events following the initial compromise to understand the attacker's motives. What is the timestamp for the first access to an S3 object by the attacker?
 
-### Investigation
+## Investigation
 
 We continue the investigation using the compromised user identified in Question 1.
 
@@ -74,11 +69,11 @@ eventName="GetObject"
 The earliest event returned by this search represents the first recorded S3 object access by the attacker.
 
 **Result:** The timestamp of the first S3 object access was: `2023-11-02 09:55`
-### Question 3
+# Question 3
 
-**Among the S3 buckets accessed by the attacker, one contains a DWG file. What is the name of this bucket?**
+### Among the S3 buckets accessed by the attacker, one contains a DWG file. What is the name of this bucket?
 
-### Investigation
+## Investigation
 
 We investigate the S3 object requests made by the attacker and examine the requested object paths.
 
