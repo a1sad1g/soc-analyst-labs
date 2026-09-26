@@ -40,6 +40,10 @@ userIdentity.userName="[USERNAME]"
 ```
 By reviewing the user's activity chronologically, we can identify the suspicious actions associated with the compromised account
 
+# Result
+
+The compromised user account was: `helpdesk.luke`
+
 ### Question 2
 
 We must investigate the events following the initial compromise to understand the attacker's motives. What is the timestamp for the first access to an S3 object by the attacker?
