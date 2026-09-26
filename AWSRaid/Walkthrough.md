@@ -29,6 +29,16 @@ We begin by examining the AWS identities present in the CloudTrail data.
 ```spl
 index="aws_cloudtrail" eventSource="signin.amazonaws.com" errorMessage="Failed authentication" | stats count by userIdentity.userName | sort -count
 ```
+This search groups the CloudTrail events by user identity, allowing us to identify the accounts that generated activity in the AWS environment.
+
+After identifying the available user accounts, we investigate their activity to determine which account was involved in the initial compromise.
+```
+index=aws-cloudtrail sourcetype=aws:cloudtrail
+userIdentity.userName="[USERNAME]"
+| table _time eventName eventSource sourceIPAddress userIdentity.userName requestParameters
+| sort 0 _time
+```
+By reviewing the user's activity chronologically, we can identify the suspicious actions associated with the compromised account
 
 ### Question 2
 
