@@ -141,7 +141,7 @@ account was added.
 
 ![Group_Name](screenshot/Group_Name.png)
 
-In `requestParameters.groupName` we can see the name of the group was added to it
+In `requestParameters.groupName`, we can see the name of the group to which the new account was added.
 
 ## 🏆 Lab Completion
 ![Badge](screenshot/Badge.png)
