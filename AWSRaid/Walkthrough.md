@@ -26,10 +26,12 @@ index="aws_cloudtrail" eventSource="signin.amazonaws.com" errorMessage="Failed a
 ```
 This search groups the CloudTrail events by user identity, allowing us to identify the accounts that generated activity in the AWS environment.
 
+The failed authentication events revealed helpdesk.luke as the username associated with the failed sign-in attempts. I then followed this account's subsequent CloudTrail activity to investigate what happened after the initial compromise.
+
 After identifying the available user accounts, we investigate their activity to determine which account was involved in the initial compromise.
 ```
 index=aws-cloudtrail sourcetype=aws:cloudtrail
-userIdentity.userName="[USERNAME]"
+userIdentity.userName="helpdesk.luke"
 | table _time eventName eventSource sourceIPAddress userIdentity.userName requestParameters
 | sort 0 _time
 ```
@@ -81,7 +83,7 @@ We continue investigating the S3 activity performed by the compromised user.
 Since the question specifically mentions a DWG file, we search the CloudTrail events for S3 object requests containing the .dwg file extension.
 ```
 index=aws-cloudtrail sourcetype=aws:cloudtrail
-userIdentity.userName="[COMPROMISED_USER]"
+userIdentity.userName="helpdesk.luke"
 eventSource="s3.amazonaws.com"
 | search requestParameters="*.dwg*"
 | table _time eventName requestParameters sourceIPAddress
@@ -143,4 +145,4 @@ In `requestParameters.groupName` we can see the name of the group was added to i
 # Badge
 ![Badge](screenshot/Badge.png)
 
-**I hope this write-up was helpful to you, Until the next one stay save.**
+**I hope you found this write-up helpful. Until the next one, stay safe!**
