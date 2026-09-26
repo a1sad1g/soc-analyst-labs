@@ -105,9 +105,11 @@ We investigate S3 configuration changes and bucket access-control events.
 
 ![Bucket](screenshot/Bucket.png)
 
-When we examining the `requestParameters.bucketName` we saw the name of the bucket.
+The query returned the relevant S3 configuration event. By examining the `requestParameters.bucketName` field, we identified the bucket whose configuration was modified to allow public access.
 
-![bucket](screenshot/bucket.png)
+![Bucket Name](screenshot/bucket.png)
+
+The bucket name can be seen in the `requestParameters.bucketName` field.
 
 # Question 5
 
@@ -142,7 +144,7 @@ account was added.
 
 In `requestParameters.groupName` we can see the name of the group was added to it
 
-# Badge
+## 🏆 Lab Completion
 ![Badge](screenshot/Badge.png)
 
 **I hope you found this write-up helpful. Until the next one, stay safe!**
