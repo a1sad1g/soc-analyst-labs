@@ -64,4 +64,32 @@ We investigate S3 configuration changes and bucket access-control events.
 
 ![Bucket](screenshot/Bucket.png)
 
+### Question 5
+
+Creating a new user account is a common tactic attackers use to establish persistence in a compromised environment. What is the username of the account created by the attacker?
+
+### Investigation
+
+We search CloudTrail for IAM user-creation activity.
+
+```spl
+ index="aws_cloudtrail" "userIdentity.userName"="helpdesk.luke" eventCategory="Management" | search eventName="CreateUser" OR eventName="CreateLoginProfile"| table _time, eventName, requestParameters.userName
+```
+
+### Question 6
+
+Following account creation, the attacker added the account to a specific group. What is the name of the group to which the account was added?
+
+### Investigation
+
+We investigate IAM events following the `CreateUser` event.
+
+![User_Group](screenshot/User_Group)
+
+The AddUserToGroup event contains the group to which the newly created
+account was added. 
+
+![Group_Name](screenshot/Group_Name.png)
+
+In `requestParameters.groupName` we can see the name of the group was added to it
 
