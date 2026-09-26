@@ -48,7 +48,7 @@ We continue the investigation using the compromised user identified in Question 
 First, we filter the CloudTrail events to S3 activity performed by the compromised account and sort the events chronologically.
 ```
 index=aws-cloudtrail sourcetype=aws:cloudtrail
-userIdentity.userName="[COMPROMISED_USER]"
+userIdentity.userName="helpdesk.luke"
 | search eventSource="s3.amazonaws.com"
 | sort 0 _time
 | table _time eventName requestParameters sourceIPAddress
@@ -69,27 +69,43 @@ eventName="GetObject"
 The earliest event returned by this search represents the first recorded S3 object access by the attacker.
 
 **Result:** The timestamp of the first S3 object access was: `2023-11-02 09:55`
+
 # Question 3
 
 ### Among the S3 buckets accessed by the attacker, one contains a DWG file. What is the name of this bucket?
 
 ## Investigation
 
-We investigate the S3 object requests made by the attacker and examine the requested object paths.
+We continue investigating the S3 activity performed by the compromised user.
 
-```spl
-index="aws_cloudtrail" "userIdentity.userName"="helpdesk.luke" eventSource="s3.amazonaws.com" eventName="GetObject" "*.dwg" | table _time, requestParameters.bucketName, requestParameters.key
+Since the question specifically mentions a DWG file, we search the CloudTrail events for S3 object requests containing the .dwg file extension.
 ```
+index=aws-cloudtrail sourcetype=aws:cloudtrail
+userIdentity.userName="[COMPROMISED_USER]"
+eventSource="s3.amazonaws.com"
+| search requestParameters="*.dwg*"
+| table _time eventName requestParameters sourceIPAddress
+| sort 0 _time
+```
+The requestParameters field contains information about the S3 request, including the bucket and object involved in the operation.
 
-### Question 4
+After locating the event containing the .dwg file, we examine the bucket name associated with that request.
 
-**We've identified changes to a bucket's configuration that allowed public access, a significant security concern. What is the name of this particular S3 bucket?**
+**Result:** The S3 bucket containing the DWG file was: `product-designs-repository31183937`
 
-### Investigation 
+# Question 4
+
+## We've identified changes to a bucket's configuration that allowed public access, a significant security concern. What is the name of this particular S3 bucket?
+
+## Investigation 
 
 We investigate S3 configuration changes and bucket access-control events.
 
 ![Bucket](screenshot/Bucket.png)
+
+When we examining the `requestParameters.bucketName` we saw the name of the bucket.
+
+![bucket](screenshot/bucket.png)
 
 ### Question 5
 
