@@ -105,9 +105,19 @@ Before filtering, get a high-level view of the capture.
 
 1. Find the connection back from the server to the attacker (reverse shell):
    ```
-   ip.src == <server_ip> && ip.dst == <attacker_ip> && !http
+     ip.src == 10.0.0.112 && ip.dst == 14.0.0.120 && tcp.flags.syn == 1 && tcp.flags.ack == 0
    ```
 2. Follow the TCP stream to read the commands typed in the shell.
+
+**Answer:** `14.0.0.120:443`
+
+![reverse_shell](Screenshot/reverse_shell.png)
+
+## Lab completion
+
+![Badge](Screenshot/Badge.png)
+
+**I hope this write-up was helpful to you, Until the next one stay safe.**
 
 
 
