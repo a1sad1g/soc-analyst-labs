@@ -143,7 +143,11 @@ Heavy SMB2 traffic between a small set of hosts is the first sign of lateral mov
 | Shares abused | `ADMIN$`, `IPC$` |
 
 
+### Lab Completion
 
+![Badge](Screenshot/Badge.png)
+
+**I hope this write-up was helpful to you, Until the next one stay safe.**
 
 
 
