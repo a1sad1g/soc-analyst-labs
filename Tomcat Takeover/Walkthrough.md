@@ -49,6 +49,7 @@ Before filtering, get a high-level view of the capture.
 **Goal:** Knowing what tool used to enumeration the web server.
 
 1- Use the same filter from Q3 and Follow HTTP Stream and look for the header `User-Agent`.
+
 2- You will see the name of the tool that used.
 
 **Answer:** `gobuster`
@@ -72,4 +73,17 @@ Before filtering, get a high-level view of the capture.
 
 ### Q6: After accessing the admin panel, the attacker brute-forced the login. What credentials did the attacker successfully use? 
 
+**Goal:** recover the username and password that gave the attacker access.
+
+1- Find a request that with http method `POST`
+```
+  ip.src == 14.0.0.120 && http contains "POST"
+```
+2- Expand the packet: *Hypertext Transfer Protocol > Authorization > Credentials* shows the username and password.
+
+**Answer:** `admin:tomcat`
+
+![credentials](Screenshot/credentials.png)
+
+### Q7: Once inside the admin panel, the attacker attempted to upload a file with the intent of establishing a reverse shell. Can you identify the name of this malicious file from the captured data?
 
