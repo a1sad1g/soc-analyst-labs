@@ -34,9 +34,42 @@ Before filtering, get a high-level view of the capture.
 
 ### Q3: From the PCAP file, multiple open ports were detected as a result of the attacker's active scan. Which of these ports provides access to the web server admin panel?
 
+**Goal:** determine which ports the attacker found during scanning.
 
+1- Use this filter to capture the http request to admin panal.
+```
+  ip.src == 14.0.0.120 && http
+```
+**Answer:** `8080`
 
+![Port_number](Screenshot/Port_number.png)
 
+### Q4: Following the discovery of open ports on our server, it appears that the attacker attempted to enumerate and uncover directories and files on our web server. Which tools can you identify from the analysis that assisted the attacker in this enumeration process?
 
+**Goal:** Knowing what tool used to enumeration the web server.
+
+1- Use the same filter from Q3 and Follow HTTP Stream and look for the header `User-Agent`.
+2- You will see the name of the tool that used.
+
+**Answer:** `gobuster`
+
+![Tool](Screenshot/Tool.png)
+
+### Q5: After enumerating directories on our web server, the attacker made numerous requests to identify administrative interfaces. Which directory related to the admin panel did the attacker uncover?
+
+**Goal:** find the management interface the attacker located
+
+1. Filter attacker HTTP requests:
+   ```
+   http.request && ip.src == 14.0.0.120
+   ```
+2. Look for a burst of requests to many paths (directory enumeration), many returning `404`.
+3. Find the request that returns a different response.
+
+**Answer:** `/manager`
+
+![Path](Screenshot/Path.png)
+
+### Q6: After accessing the admin panel, the attacker brute-forced the login. What credentials did the attacker successfully use? 
 
 
