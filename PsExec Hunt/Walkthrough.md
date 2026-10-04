@@ -25,3 +25,5 @@ Heavy SMB2 traffic between a small set of hosts is the first sign of lateral mov
 
 **Answer:** `10.0.0.130`
 
+![IP](Screenshot/first_ip_that_gain_access_to_him.png)
+
