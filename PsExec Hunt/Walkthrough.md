@@ -50,7 +50,7 @@ Heavy SMB2 traffic between a small set of hosts is the first sign of lateral mov
    ```
    ntlmssp.auth.username
    ```
-2. Expand the packet: *NTLM Secure Service Provider* and read **User name**, **Domain name**, and **Host name**.
+2. Expand the packet: *NTLM Secure Service Provider* and read **Account name**, **Domain name**, and **Host name**.
 
 **Answer:** `ssales`
 
