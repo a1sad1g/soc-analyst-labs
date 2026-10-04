@@ -14,19 +14,26 @@ Before filtering, get a high-level view of the capture.
 
 **Goal:** identify the external host attacking the server.
 
-**Approach:**
 1. Open *Statistics > Conversations > IPv4* and sort by packets.
 2. Identify the external IP with abnormal volume toward the server.
-3. Confirm by filtering all of its traffic:
-   ```
-   ip.addr == 14.0.0.120
-   ```
 
 **Answer:** `14.0.0.120`
 
 ![Attacker_IP](Screenshot/Attacker_IP.png)
 
 ### Q2: Based on the identified IP address associated with the attacker, can you identify the country from which the attacker's activities originated?
+
+**Goal:** find where the attacker's IP is located.
+
+1. Use any Threat Intel website that you search on it about the attacker ip (like [IPINFO](https://ipinfo.io))
+2. And after that you can see the country of the attacker
+
+![Country](Screenshot/Country_of_the_attacker.png)
+
+**Answer:** `China`
+
+### Q3: From the PCAP file, multiple open ports were detected as a result of the attacker's active scan. Which of these ports provides access to the web server admin panel?
+
 
 
 
