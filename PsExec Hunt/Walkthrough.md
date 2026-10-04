@@ -113,6 +113,36 @@ Heavy SMB2 traffic between a small set of hosts is the first sign of lateral mov
 
 ![second_machine](Screenshot/second_machine_name.png)
 
+## Attack Timeline
+
+| Step | Activity | Details |
+|------|----------|---------|
+| 1 | Attacker foothold | Operating from `10.0.0.130` |
+| 2 | Authentication | NTLM login as `ssales` |
+| 3 | First pivot | Connection to `SALES-PC` |
+| 4 | Service install | `PSEXESVC.EXE` copied via `ADMIN$` |
+| 5 | Remote execution | Commands and output over `IPC$` named pipes |
+| 6 | Second pivot | Same technique used against `MARKETING-PC` |
+
+## MITRE ATT&CK Mapping
+
+| ID | Technique | Observed Behavior |
+|----|-----------|-------------------|
+| T1078 | Valid Accounts | Login with `ssales` |
+| T1021.002 | Remote Services: SMB/Windows Admin Shares | `ADMIN$` and `IPC$` access |
+| T1569.002 | System Services: Service Execution | `PSEXESVC` service created and started |
+
+## Indicators of Compromise (IOCs)
+
+| Type | Value |
+|------|-------|
+| Source IP | `10.0.0.130` |
+| Compromised account | `ssales` |
+| Targeted hosts | `SALES-PC`, `MARKETING-PC` |
+| Service binary | `PSEXESVC.EXE` |
+| Shares abused | `ADMIN$`, `IPC$` |
+
+
 
 
 
