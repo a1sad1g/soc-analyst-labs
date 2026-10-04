@@ -27,7 +27,7 @@ Heavy SMB2 traffic between a small set of hosts is the first sign of lateral mov
 
 ![IP](Screenshot/first_ip_that_gain_access_to_him.png)
 
-## To fully understand the extent of the breach, can you determine the machine's hostname to which the attacker first pivoted?
+## Q2: To fully understand the extent of the breach, can you determine the machine's hostname to which the attacker first pivoted?
 
 **Goal:** identify the first machine the attacker moved to.
 
@@ -57,7 +57,7 @@ Heavy SMB2 traffic between a small set of hosts is the first sign of lateral mov
 
 ![Account](Screenshot/Account_name_of_the_attacker.png)
 
-Q4: After figuring out how the attacker moved within our network, we need to know what they did on the target machine. What's the name of the service executable the attacker set up on the target?
+### Q4: After figuring out how the attacker moved within our network, we need to know what they did on the target machine. What's the name of the service executable the attacker set up on the target?
 
 
 
