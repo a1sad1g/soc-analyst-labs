@@ -6,8 +6,8 @@ Step-by-step solution for each question, with the Wireshark filters and reasonin
 
 Open the PCAP in Wireshark and get a high-level view before filtering.
 
-**Statistics > Protocol Hierarchy: confirm SMB2, NTLMSSP, and DCERPC are present.**
-**Statistics > Conversations > IPv4: note which hosts talk to each other the most.**
+**Statistics > Protocol Hierarchy:** confirm SMB2, NTLMSSP, and DCERPC are present.
+**Statistics > Conversations > IPv4:** note which hosts talk to each other the most.
 
 Heavy SMB2 traffic between a small set of hosts is the first sign of lateral movement.
 
