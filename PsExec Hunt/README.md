@@ -6,7 +6,7 @@ A SOC investigation exercise: trace an attacker's lateral movement through a net
 
 ## Scenario
 
-The Intrusion Detection System (IDS) flagged suspicious **lateral movement activity involving PsExec**. This may indicate unauthorized access and movement across the network.
+An alert from the Intrusion Detection System (IDS) flagged suspicious lateral movement activity involving PsExec. This indicates potential unauthorized access and movement across the network. As a SOC Analyst, your task is to investigate the provided PCAP file to trace the attacker’s activities. Identify their entry point, the machines targeted, the extent of the breach, and any critical indicators that reveal their tactics and objectives within the compromised environment.
 
 ## Background: How PsExec Works
 
@@ -44,7 +44,6 @@ dcerpc                               # Service Control Manager calls
 3. **Inspect NTLM authentication** to recover usernames and hostnames.
 4. **Locate the service binary** being written and the service being created.
 5. **Follow the traffic** to identify further targets after the first pivot.
-6. **Document** every finding with the packet number and filter used.
 
 ## Relevant MITRE ATT&CK Techniques
 
