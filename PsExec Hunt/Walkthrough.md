@@ -79,10 +79,39 @@ Heavy SMB2 traffic between a small set of hosts is the first sign of lateral mov
    ```
    smb2.cmd == 3
    ```
-2. Read the **Tree** field (for example `\\<target>\ADMIN$`).
+2. Read the **Tree** field (like `\\10.0.0.133\ADMIN$`).
 3. Match the timing: the `ADMIN$` connection occurs just before `PSEXESVC.EXE` is written.
 
 **Answer:** `ADMIN$`
+
+**Why it matters:** `ADMIN$` maps to `C:\Windows` and requires administrative rights. Writing there is how PsExec places its service binary.
+
+### Q6: We must identify the network share used to communicate between the two machines. Which network share did PsExec use for communication?
+
+**Goal:** find the share used once the service is running.
+
+1. Using the same `smb2.cmd == 3` filter, look for a second tree connect after the service starts.
+2. Look for named pipe activity:
+   ```
+   smb2.filename contains "PSEXESVC"
+   ```
+   Pipes such as `PSEXESVC` and its stdin/stdout/stderr pipes carry commands and output.
+
+**Answer:** `IPC$`
+
+**Why it matters:** `IPC$` provides named pipe access, which PsExec uses as its remote command channel.
+
+### Q7: Now that we have a clearer picture of the attacker's activities on the compromised machine, it's important to identify any further lateral movement. What is the hostname of the second machine the attacker targeted to pivot within our network?
+
+**Goal:** identify further lateral movement.
+
+1. Return to the attacker's conversations in *Statistics > Conversations*. Look for another host receiving SMB traffic after the first pivot is complete.
+2. Repeat the Q2 steps (NTLM challenge, Target Info) for that second destination.
+3. Confirm the same PsExec pattern: `ADMIN$` connection, `PSEXESVC.EXE` write, then `IPC$`.
+
+**Answer:** `MARKETING-PC`
+
+![second_machine](Screenshot/second_machine_name.png)
 
 
 
