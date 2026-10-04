@@ -87,3 +87,27 @@ Before filtering, get a high-level view of the capture.
 
 ### Q7: Once inside the admin panel, the attacker attempted to upload a file with the intent of establishing a reverse shell. Can you identify the name of this malicious file from the captured data?
 
+**Goal:** identify the payload the attacker deployed.
+
+1- Filter for uploads:
+```
+  ip.src == 14.0.0.120 && http contains "upload"
+```
+2- Use *Follow > TCP Stream* to read the request. The `filename=` field in the multipart body shows the file name.
+
+**Answer:** `JXQOZY.war`
+
+![filename](Screenshot/filename.png)
+
+### Q8: After the attacker established a reverse shell on our server, the payload connects back to the attacker's machine. From the analysis, what is the callback destination in IP:port format?
+
+**Goal:** find how the attacker kept access to the server.
+
+1. Find the connection back from the server to the attacker (reverse shell):
+   ```
+   ip.src == <server_ip> && ip.dst == <attacker_ip> && !http
+   ```
+2. Follow the TCP stream to read the commands typed in the shell.
+
+
+
