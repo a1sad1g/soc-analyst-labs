@@ -58,6 +58,34 @@ Heavy SMB2 traffic between a small set of hosts is the first sign of lateral mov
 
 ### Q4: After figuring out how the attacker moved within our network, we need to know what they did on the target machine. What's the name of the service executable the attacker set up on the target?
 
+**Goal:** find the binary PsExec dropped on the target.
+
+1. Filter for SMB2 Create requests that mention PsExec:
+   ```
+   smb2.cmd == 5 && smb2.filename contains "PSEXESVC"
+   ```
+2. Check the **Filename** field. You should see the binary being created, followed by Write requests carrying its content.
+
+
+**Answer:** `PSEXESVC.EXE`
+
+![service](Screenshot/service_excutable_file.png)
+
+### Q5: We need to know how the attacker installed the service on the compromised machine to understand the attacker's lateral movement tactics. This can help identify other affected systems. Which network share was used by PsExec to install the service on the target machine?
+
+**Goal:** find the share used to copy the service binary.
+
+1. Filter for tree connect requests:
+   ```
+   smb2.cmd == 3
+   ```
+2. Read the **Tree** field (for example `\\<target>\ADMIN$`).
+3. Match the timing: the `ADMIN$` connection occurs just before `PSEXESVC.EXE` is written.
+
+**Answer:** `ADMIN$`
+
+
+
 
 
 
