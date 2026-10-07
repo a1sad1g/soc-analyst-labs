@@ -6,7 +6,7 @@
 | **Event ID** | 82 |
 | **Rule** | SOC140 - Phishing Mail Detected - Suspicious Task Scheduler |
 | **Level** | Security Analyst |
-| **Verdict** | True Positive (phishing with a password-protected attachment) |
+
 
 ## 1. Alert Details
 
