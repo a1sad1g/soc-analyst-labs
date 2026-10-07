@@ -20,7 +20,7 @@
 | Device action | Blocked |
 
 
-![Alert details](images/alert-details.png)
+![Alert details](Image/alert-details.png)
 
 ## 2. Step-by-Step Investigation
 
@@ -35,7 +35,7 @@ I Answered the playbook questions: when it was sent, the SMTP address, the sende
 
 The mail has one attachment.
 
-![Email body and attachment](images/email-body.png)
+![Email body and attachment](Image/email-body.png)
 
 ### Step 3 – Judge the content
 The mail is suspicious for these reasons:
@@ -48,7 +48,7 @@ The mail is suspicious for these reasons:
 ### Step 4 – Analyze the attachment
 Using the hash `72c812cf21909a48eb9cceb9e04b865d` on virustotal the results revealed that 30 security vendors flagged this file as a malicious and most of them labelled it as trojan. This reinforces the suspicion raised during the initial investigation.
 
-![VirusTotal result](images/virustotal.png)
+![VirusTotal result](Image/virustotal.png)
 
 
 ### Step 5 – Check if the mail was delivered
@@ -63,15 +63,16 @@ Searching `aaronluo@cmail.carleton.ca` in Email Security shows:
 | Mar 07, 2021, 04:45 PM | nicolas@letsdefend.io | Invoice | Unknown |
 | Oct 29, 2020, 06:40 PM | mark@letsdefend.io | UPS Your Packages Status | Allowed |
 
-![Sender history](images/sender-history.png)
+We just focus on the subject COVID19 Vaccine.
+![Sender history](Image/sender-history.png)
 
 
 ### Step 7 – Check the endpoints
-![Endpoint search](images/endpoint-search.png)
+![Endpoint search](Image/endpoint-search.png)
 
 - I Searched for `172.16.20.3` in Endpoint Security and was returned the **Exchange Server**. This is the mail server, not the recipient's workstation.
 
-  ![Terminal history](images/terminal-history.png)
+  ![Terminal history](Image/terminal-history.png)
   
 - **Terminal history**:
   ```
@@ -82,7 +83,7 @@ Searching `aaronluo@cmail.carleton.ca` in Email Security shows:
   ```
   This is a suspicious account-creation pattern, but it predates the alert and cannot be tied to this email. It should be reported and investigated separately.
 
-  ![Process list](images/process-list.png)
+  ![Process list](Image/process-list.png)
   
 - **Process list** (Chrome.exe, hh.exe, ccsvchst.exe, notepad.exe): no hostname, no process IDs and every row says "No Event Time", so no execution can be linked to this email. `ccsvchst.exe` is normally a Symantec service, so it is not malicious without more evidence.
 
