@@ -81,7 +81,7 @@ We just focus on the subject COVID19 Vaccine.
   net user backupUser
   net localgroup backupGroup backupUser /add
   ```
-  This is a suspicious account-creation pattern, but it predates the alert and cannot be tied to this email. It should be reported and investigated separately.
+  This is a suspicious account-creation pattern, but it predates the alert and cannot be tied to this email.
 
   ![Process list](Image/process-list.png)
   
