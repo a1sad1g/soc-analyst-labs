@@ -19,5 +19,5 @@
 | Subject | Invoice |
 | Device action | Allowed |
 
-![Image](Image/Details.png)
+![Image](Image/1/Details.png)
 
