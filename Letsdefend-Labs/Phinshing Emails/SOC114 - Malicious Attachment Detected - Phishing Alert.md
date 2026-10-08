@@ -44,7 +44,7 @@ The email content is suspicious because it uses a generic greeting, provides no 
 
 Using the hash `c9ad9506bcccfaa987ff9fc11b91698d` on virustotal the result provide us the file has 37 security vendor flagged this file as malicious 
 
-![virustotal](Image/1/virustotal2.png)
+![virustotal](Image/1/virestotal2.png)
 
 ### Step 5 – Check if the mail was delivered
 The device action is **Allowed** so the email is delivered to the target but after searched in Email security they deleted the email before the recipient opened it.
