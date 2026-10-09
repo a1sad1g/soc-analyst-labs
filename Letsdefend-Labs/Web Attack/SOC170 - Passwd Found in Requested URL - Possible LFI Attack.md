@@ -11,30 +11,52 @@
 
 ![Alert](Images/Alert_Details.png)
 
-## Step 1 - Understand Why the alert Was Triggered
+## Step 1 - Understand Why the Alert Was Triggered
 
-This alert comes because there are a Possible LFI Attack detected on a URL request `https://172.16.17.13/?file=../../../../etc/passwd` and this can be a path traversal vulnerability, This bug is server-side vulnerability can lead to sensitive information about the server
+The alert was triggered because a possible Local File Inclusion (LFI) attack was detected in the following URL request:
+
+`https://172.16.17.13/?file=../../../../etc/passwd`
+
+The request uses a path traversal technique (`../`) to move up the directory tree and read `/etc/passwd`, a sensitive system file on Linux servers. If the application does not properly validate the `file` parameter, this server-side vulnerability can expose sensitive information about the server.
 
 ## Step 2 - Collect Data
 
-First the ownership of the source IP is `106.55.45.162`, Destination IP is `172.16.17.13` and the host name of destination IP is `WebServer1006` and traffic came from the internet not from the company network
-I searched about the source IP in virustotal and result for it was not malicious
+- **Source IP:** `106.55.45.162` (external, from the internet)
+- **Destination IP:** `172.16.17.13`
+- **Destination hostname:** `WebServer1006`
+- **Traffic direction:** Internet → Company network
 
-![virustotal](Images/virustotal.png)
+The traffic came from the internet, not from the internal network. I checked the source IP on VirusTotal and it was not flagged as malicious.
 
-## Step 3 - Is Traffic Malicious
+![VirusTotal](Images/virustotal.png)
 
-Based on the Request URL that came from the internet it's a malicious traffic because it's contained a payload that can lead to sensitive information about the server
+A clean reputation does not mean the activity is harmless. Attackers often use new or unlisted IPs, so the decision must be based on the request content.
 
-## Step 4 - What is the Attack Type
+## Step 3 - Is the Traffic Malicious?
 
-Based on this payload `../../../../etc/passwd` it's considered as an **LFI Attack** can lead to sensitive information about the server
+**Yes.** The request came from an external source and contains a path traversal payload aimed at reading a sensitive system file. This is not normal user behavior.
+
+## Step 4 - What Is the Attack Type?
+
+Based on the payload `../../../../etc/passwd`, this is an **LFI (Local File Inclusion) / Path Traversal attack**. The attacker tried to read a local file on the server by manipulating the `file` parameter.
 
 ## Step 5 - Check Whether the Attack Was Successful
 
-I searched in Log Management with the source address to know the response of the request that contained the malicious URL and based on the information that I found it the size of the response is `0` and status code return as `500` and this is a error from server that can't understand the request that was send
+I searched Log Management using the source IP to find the server's response to the malicious request. The log shows:
 
-![Photo](Images/Raw_Log.png)
+- **HTTP status code:** `500` (Internal Server Error)
+- **Response size:** `0` bytes
+
+![Raw Log](Images/Raw_Log.png)
+
+A response size of 0 means no data was returned to the attacker, so the contents of `/etc/passwd` were not disclosed. The 500 status means the server failed while processing the request. **The attack was not successful.**
+
+## Step 6 - Verdict and Contain
+
+**Verdict:** True Positive. Malicious attempt, unsuccessful.
+
+**Containment:** Not required, since no compromise is indicated. Device isolation is unnecessary.
+
 
 
 
