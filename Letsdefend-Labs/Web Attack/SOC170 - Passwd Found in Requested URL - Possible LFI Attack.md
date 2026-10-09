@@ -34,6 +34,8 @@ A clean reputation does not mean the activity is harmless. Attackers often use n
 
 ## Step 3 - Is the Traffic Malicious?
 
+![Image](Images/Log_management.png)
+
 **Yes.** The request came from an external source and contains a path traversal payload aimed at reading a sensitive system file. This is not normal user behavior.
 
 ## Step 4 - What Is the Attack Type?
