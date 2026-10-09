@@ -48,6 +48,8 @@ This command is highly suspicious because it abuses the legitimate Windows execu
 
 The URL references a file named KBDYAK.exe, which may be a malicious payload. The command's structure is consistent with a technique used by attackers to leverage legitimate Windows components to initiate suspicious script activity and retrieve external content.
 
+The file `KBDYAK.exe` it run on the Device I know that from the process history so the file was executed in the device so I must isolate the device
+
 ## Step 6 - Contain The Device
 I Containment the device from the network isolated it to more investigation on the device 
 
