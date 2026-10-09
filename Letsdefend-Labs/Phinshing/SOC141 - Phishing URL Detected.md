@@ -35,4 +35,8 @@ In virustotal I search for URL it's return it as a malicious URL
 ## Step 4 - Check if the URL Delivered or anyone connected to it
 I used the Destination IP of the URL and search with it in log management to saw if anyone connected to this URL and it's return one Device and it's the same device that alert come from it
 
+## Step 5 - Review the username history
+Searching the username `EmilyComp` in the Endpoint Security and saw the history of terminal, process, Browser:
+![Photo](Image/2/endpoint.png)
+![Photo](Image/2/endpoint2.png)
 
