@@ -51,12 +51,13 @@ I searched Log Management using the source IP to find the server's response to t
 
 A response size of 0 means no data was returned to the attacker, so the contents of `/etc/passwd` were not disclosed. The 500 status means the server failed while processing the request. **The attack was not successful.**
 
-## Step 6 - Verdict and Contain
+## Step 6 - Verdict, Contain and Escalation
 
 **Verdict:** True Positive. Malicious attempt, unsuccessful.
 
 **Containment:** Not required, since no compromise is indicated. Device isolation is unnecessary.
 
+**Escalation:** Not necessary, because the Attack was unsuccessful.
 
 
 
