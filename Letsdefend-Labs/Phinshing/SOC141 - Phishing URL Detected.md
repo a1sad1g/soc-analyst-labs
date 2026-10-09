@@ -19,5 +19,8 @@
 | Destination Hostname | mogagrocol.ru |
 
 
+## Step 1 - Read the alert details
+I read the alert SOC141 (Event ID 86) and recorded the time, Username, Source address, Source Host name, Destination Address, Destination Host name and device action
+
 
 
