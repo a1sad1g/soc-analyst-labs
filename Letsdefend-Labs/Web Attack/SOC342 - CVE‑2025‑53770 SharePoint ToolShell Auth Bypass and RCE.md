@@ -9,8 +9,8 @@
 
 ## Alert Details
 
-![Alert](Images/Alert_Details1.png)
-![Alert](Images/Alert_Details2.png)
+![Alert](Images/1/Alert_Details1.png)
+![Alert](Images/1/Alert_Details2.png)
 
 ## Step 1 - Understand Why the Alert Was Trigger
 
