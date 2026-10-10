@@ -32,4 +32,10 @@ I Searched about the Source IP in virustotal and return 10 security vendors flag
 
 ## Step 3 - Examine HTTP Traffic
 
+I looked at the log for the request that was send the source address make a `POST` request `/_layouts/15/ToolPane.aspx?DisplayMode=Edit&a=/ToolPane.aspx` from this location `/_layouts/SignOut.aspx` and the response for this request was the content-length was `7699` and this is large of data that mean the request was successful to bypass the security and gained access to web server and the attacker can now make exploit to the server with this CVE.
+
+![Photo](Images/1/Request.png)
+
+
+
 
