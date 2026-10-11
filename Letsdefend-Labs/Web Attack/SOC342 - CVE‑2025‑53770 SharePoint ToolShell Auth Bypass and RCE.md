@@ -48,6 +48,15 @@ I checked the device that the attacker was gained access to him and search for C
 
 before this hash the attacker run the service `w3wp.exe` and this service run a powershell command after that and this exactly what this CVE can exploited 
 
+![Photo](Images/1/Exploited.png)
+
+## Step 5 - Check Whether the Attack Was Successful
+
+Yes, The attack was successful and exploited by the CVE
+
+## Step 6 - Contain and Escalate 
+
+Contain the device from the network, escalate the alert to tier 2, and close the alert as True Positive.
 
 
 
