@@ -80,10 +80,4 @@ Yes, the attack was successful. The attacker exploited the vulnerability and exe
 2. Escalate the alert to Tier 2.
 3. Close the alert as a **True Positive**.
 
-## Recommendations (for Tier 2 / remediation)
 
-- Apply Microsoft's security updates for SharePoint Server.
-- Rotate the SharePoint **ASP.NET machine keys** and restart IIS, because the attacker may have stolen them.
-- Search for dropped web shells (for example `spinstall0.aspx`) in the SharePoint `LAYOUTS` directory.
-- Block the source IP `107.191.58.76` at the firewall.
-- Enable AMSI and Microsoft Defender on SharePoint servers.
