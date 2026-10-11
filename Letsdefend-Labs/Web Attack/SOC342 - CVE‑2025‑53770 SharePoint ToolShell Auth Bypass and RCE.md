@@ -1,10 +1,10 @@
-# SOC342 - CVE‑2025‑53770 SharePoint ToolShell Auth Bypass and RCE
+# SOC342 - CVE-2025-53770 SharePoint ToolShell Auth Bypass and RCE
 
 | | |
 |---|---|
 | **Platform** | LetsDefend |
 | **Event ID** | 320 |
-| **Rule** | SOC342 - CVE‑2025‑53770 SharePoint ToolShell Auth Bypass and RCE |
+| **Rule** | SOC342 - CVE-2025-53770 SharePoint ToolShell Auth Bypass and RCE |
 | **Level** | Security Analyst |
 
 ## Alert Details
@@ -12,51 +12,78 @@
 ![Alert](Images/1/Alert_Details1.png)
 ![Alert](Images/1/Alert_Details2.png)
 
-## Step 1 - Understand Why the Alert Was Trigger
+## Step 1 - Understand Why the Alert Was Triggered
 
-With looking on the rule the alert comes because there are a CVE-2025-53770 was detected this CVE involving in SharePoint ToolShell this can break the authentication and lead to Remote Code Exceusion `RCE` By exploit this vulnerability on SharePoint ToolShell App.
+The alert was triggered because the rule detected exploitation activity for **CVE-2025-53770**, a critical vulnerability (CVSS 9.8) in on-premises Microsoft SharePoint Server, known as **"ToolShell"**.
+
+- CVE-2025-53770 is an **unsafe deserialization** flaw that leads to **Remote Code Execution (RCE)**.
+- It is used together with an **authentication bypass** (related to CVE-2025-53771 / CVE-2025-49706) in an exploit chain. The chain lets an unauthenticated attacker reach the vulnerable endpoint and run code on the server.
+- It affects on-premises SharePoint Server (2016, 2019, and Subscription Edition). SharePoint Online is not affected.
 
 ## Step 2 - Collect Data
 
-**Source IP:** `107.191.58.76` (external, from the internet).
+**Source IP:** `107.191.58.76` (external, from the internet)
 
-**Destination IP:** `172.16.20.17`.
+**Destination IP:** `172.16.20.17`
 
-**Destination Host Name:** `SharePoint01`.
+**Destination Host Name:** `SharePoint01`
 
-**User-Agent:** `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0`.
+**User-Agent:** `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0`
 
-![virustotal](Images/1/Attacker_IP.png)
+![VirusTotal](Images/1/Attacker_IP.png)
 
-I Searched about the Source IP in virustotal and return 10 security vendors flagged this IP as malicious
+I searched for the source IP on VirusTotal, and 10 security vendors flagged it as malicious.
 
 ## Step 3 - Examine HTTP Traffic
 
-I looked at the log for the request that was send the source address make a `POST` request `/_layouts/15/ToolPane.aspx?DisplayMode=Edit&a=/ToolPane.aspx` from this location `/_layouts/SignOut.aspx` and the response for this request was the content-length was `7699` and this is large of data that mean the request was successful to bypass the security and gained access to web server and the attacker can now make exploit to the server with this CVE.
+I reviewed the logs and found that the source IP sent a `POST` request to:
 
-![Photo](Images/1/Request.png)
+```
+/_layouts/15/ToolPane.aspx?DisplayMode=Edit&a=/ToolPane.aspx
+```
 
-## Step 4 - What is the Attack Type
+with the `Referer` header set to `/_layouts/SignOut.aspx`.
 
-This CVE will lead to Remote Code Exceusion `RCE` the attacker can write command on the system remotely by exploiting the server
+This matches the known ToolShell exploit pattern. The spoofed `SignOut.aspx` referer is what bypasses authentication on the `ToolPane.aspx` endpoint.
+
+The response had a content length of `7699` bytes. A large response suggests the request was processed rather than rejected, which supports the conclusion that the attacker bypassed authentication and reached the vulnerable endpoint. Response size alone is not proof of success, so it should be confirmed with the endpoint evidence in Step 5.
+
+![Request](Images/1/Request.png)
+
+## Step 4 - Identify the Attack Type
+
+The attack type is **Remote Code Execution (RCE)**, combined with an **authentication bypass**. By exploiting the server, the attacker can run arbitrary commands on the system remotely.
 
 ## Step 5 - Check Endpoint Security
 
-I checked the device that the attacker was gained access to him and search for Command Line, Process, and terminal history there are a suspicious hash `92bb4ddb98eeaf11fc15bb32e71d0a63256a0ed826a03ba293ce3a8bf057a514` that I found on Process History and I searched on virutotal and the hash was malicious
+I investigated the affected device and reviewed the command line, process, and terminal history. In the process history, I found a suspicious hash:
 
-![Photo](Images/1/Hash.png)
+```
+92bb4ddb98eeaf11fc15bb32e71d0a63256a0ed826a03ba293ce3a8bf057a514
+```
 
-before this hash the attacker run the service `w3wp.exe` and this service run a powershell command after that and this exactly what this CVE can exploited 
+I searched for it on VirusTotal, and it was confirmed as malicious.
 
-![Photo](Images/1/Exploited.png)
+![Hash](Images/1/Hash.png)
 
-## Step 5 - Check Whether the Attack Was Successful
+Before this hash appeared, `w3wp.exe` (the IIS worker process that hosts SharePoint) spawned a PowerShell process. A web server worker process launching a shell is abnormal and is the behavior expected when this CVE is exploited. In real ToolShell attacks, this step is typically used to drop a web shell (such as `spinstall0.aspx`) and steal the server's machine keys.
 
-Yes, The attack was successful and exploited by the CVE
+![Exploited](Images/1/Exploited.png)
 
-## Step 6 - Contain and Escalate 
+## Step 6 - Check Whether the Attack Was Successful
 
-Contain the device from the network, escalate the alert to tier 2, and close the alert as True Positive.
+Yes, the attack was successful. The attacker exploited the vulnerability and executed commands on the server.
 
+## Step 7 - Contain and Escalate
 
+1. Isolate the affected device (`SharePoint01`) from the network.
+2. Escalate the alert to Tier 2.
+3. Close the alert as a **True Positive**.
 
+## Recommendations (for Tier 2 / remediation)
+
+- Apply Microsoft's security updates for SharePoint Server.
+- Rotate the SharePoint **ASP.NET machine keys** and restart IIS, because the attacker may have stolen them.
+- Search for dropped web shells (for example `spinstall0.aspx`) in the SharePoint `LAYOUTS` directory.
+- Block the source IP `107.191.58.76` at the firewall.
+- Enable AMSI and Microsoft Defender on SharePoint servers.
