@@ -66,9 +66,11 @@ I searched for it on VirusTotal, and it was confirmed as malicious.
 
 
 Before this hash appeared, `w3wp.exe` (the IIS worker process that hosts SharePoint) spawned a PowerShell process. A web server worker process launching a shell is abnormal and is the behavior expected when this CVE is exploited. In real ToolShell attacks, this step is typically used to drop a web shell (such as `spinstall0.aspx`) and steal the server's machine keys.
+![Exploited](Images/1/Exploited.png)
+![Encoded](Images/1/Encoded.png)
 ![Decoded](Images/1/Decode.png)
 ![Decoded](Images/1/Decode2.png)
-![Exploited](Images/1/Exploited.png)
+
 
 
 ## Step 6 - Check Whether the Attack Was Successful
