@@ -36,6 +36,9 @@ I looked at the log for the request that was send the source address make a `POS
 
 ![Photo](Images/1/Request.png)
 
+## Step 4 - What is the Attack Type
 
+This CVE will lead to Remote Code Exceusion `RCE` the attacker can write command on the system remotely by exploiting the server
 
+## Step 5 - 
 
