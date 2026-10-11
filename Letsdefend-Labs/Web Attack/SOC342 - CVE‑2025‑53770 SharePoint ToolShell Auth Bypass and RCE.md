@@ -58,13 +58,12 @@ The attack type is **Remote Code Execution (RCE)**, combined with an **authentic
 
 I investigated the affected device and reviewed the command line, process, and terminal history. In the process history, I found a suspicious hash:
 
-```
-92bb4ddb98eeaf11fc15bb32e71d0a63256a0ed826a03ba293ce3a8bf057a514
-```
+![Hash](Images/1/Hash.png)
 
 I searched for it on VirusTotal, and it was confirmed as malicious.
 
-![Hash](Images/1/Hash.png)
+![virustotal](Images/1/Virustotal.png)
+
 
 Before this hash appeared, `w3wp.exe` (the IIS worker process that hosts SharePoint) spawned a PowerShell process. A web server worker process launching a shell is abnormal and is the behavior expected when this CVE is exploited. In real ToolShell attacks, this step is typically used to drop a web shell (such as `spinstall0.aspx`) and steal the server's machine keys.
 
