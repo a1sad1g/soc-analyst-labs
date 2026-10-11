@@ -40,5 +40,14 @@ I looked at the log for the request that was send the source address make a `POS
 
 This CVE will lead to Remote Code Exceusion `RCE` the attacker can write command on the system remotely by exploiting the server
 
-## Step 5 - 
+## Step 5 - Check Endpoint Security
+
+I checked the device that the attacker was gained access to him and search for Command Line, Process, and terminal history there are a suspicious hash `92bb4ddb98eeaf11fc15bb32e71d0a63256a0ed826a03ba293ce3a8bf057a514` that I found on Process History and I searched on virutotal and the hash was malicious
+
+![Photo](Images/1/Hash.png)
+
+before this hash the attacker run the service `w3wp.exe` and this service run a powershell command after that and this exactly what this CVE can exploited 
+
+
+
 
